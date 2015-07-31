@@ -21,7 +21,7 @@
 
 `define D_BIT 7 //Por ser de 0 a 7 son 8 bits.
 
-module UART(input clk100,
+module UART(input clk,
 				input rd,
 				input wr,
 				input [`D_BIT:0] w_data,
@@ -37,20 +37,20 @@ module UART(input clk100,
 	wire [`D_BIT:0] rx_dato_out;
 	wire [`D_BIT:0] tx_dato_in;
 	
-	wire clk, clkX2;
+	wire clk50, clkX2;
 	
 	/*Baud_Rate_Generator BRG (.clock(clk),
 									.tick(tick));*/
 									
 	// Instantiate the module
   clockReductor clockReductor(
-													 .CLK_IN1(clk100),
-													 .CLK_OUT1(clk),
+													 .CLK_IN1(clk),
+													 .CLK_OUT1(clk50),
 													 .CLK_OUT2(clkX2)
 													 ); 
 	
 	baud BRG (
-					 .sys_clk(clk), 
+					 .sys_clk(clk50), 
 					 .baud_clk(tick)
 					 );
 
@@ -80,7 +80,7 @@ module UART(input clk100,
 						
 
 	 debug_unit debug (
-										 .clk(clk), 
+										 .clk(clk50), 
 										 .rx_dato_out(rx_dato_out), 
 										 .rx_done(rx_done_tick), 
 										 .tx_done(tx_done_tick), 

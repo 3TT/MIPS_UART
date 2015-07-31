@@ -19,61 +19,43 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module MIPS_UART(
-									input reset,
+									//input reset,
 									input clock,
 									input rx,
 									output tx
     );
 
-wire clk;
-wire reset;
+//wire clk, clk2;
+//wire reset;
+//wire enable_clk;
 
-wire tick, rx_done_tick, tx_start, tx_done_tick;
-wire [7:0] rx_dato_out;
-wire [7:0] tx_dato_in;
-wire [321:0] debug_signal;
+wire read, write, empty, full;
+wire [7:0] transmitir, recibido;
 
-clock_reductor clock_reductor(
-														 .CLK_IN1(clock),
-														 .CLK_OUT1(clk)
-														 );
+/*clockReductor clockReductor(
+												 .CLK_IN1(clock),
+												 .CLK_OUT1(clk),
+												 .CLK_OUT2(clkX2)
+												 ); */
+													 
+UART uart(.clk(clock),
+			.rd(read),
+			.wr(write),
+			.w_data(transmitir),
+			.rx(rx),
+			.tx(tx),
+			.r_data(recibido),
+			.rx_empty(empty),
+			.tx_full(full)
+ );
 
-MIPS_DLX MIPS (
-							 .clock(clk), 
+/*MIPS_DLX MIPS (
+							 .clock(clk),
+							 //.enable_clk(enable_clk),
 							 .reset(reset), 
 							 .zero(zero),
 							 .debug_signal(debug_signal),
 							 .PC_plus_1(PC_plus_1)
-							 );
-
-Baud_Rate_Generator baud_gen (
-																 .clock(clk), 
-																 .tick(tick)
-																 );
-	 
-Rx RX (
-			 .dato_in(rx), 
-			 .tick_in(tick), 
-			 .dato_out(rx_dato_out), 
-			 .rx_done_tick(rx_done_tick)
-			 );
-
-Tx TX(
-		 .dato_in(tx_dato_in), 
-		 .tick_in(tick), 
-		 .tx_start(tx_start), 
-		 .dato_out(tx), 
-		 .tx_done_tick(tx_done_tick)
-		 );
-	 
-debug_unit debug (
-								 .clk(clk), 
-								 .rx_dato_out(rx_dato_out), 
-								 .debug_signal(debug_signal),
-								 .rx_done(rx_done_tick), 
-								 .tx_done(tx_done_tick), 
-								 .tx_dato_in(tx_dato_in), 
-								 .tx_start(tx_start)
-								 );
+							 );*/
 
 endmodule

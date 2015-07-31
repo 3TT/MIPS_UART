@@ -19,6 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module MIPS_DLX(input clock,
+				//input enable_clk,
 				//input [9:0] jump_address,	//Agregada porque todavia no esta en uso, de esta forma obligamos al ise a que no los conecte como se le cante.
 				//output [9:0] PC_plus_1,		//Agregada porque todavia no esta en uso, de esta forma obligamos al ise a que no los conecte como se le cante.
 				input reset,
@@ -72,7 +73,8 @@ assign debug_signal = {//SALIDA IF_ID
 instruction_fetch IF_instance (
     .PC_sel(PC_sel), 
     .jump_sel(jump_sel), 
-    .clock(clock), 
+    .clock(clock),
+		//.enable_clk(enable_clk),
     .PC_write(PC_write), 
     .branch_address(branch_address), 
     .jump_address(jump_address), 

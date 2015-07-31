@@ -24,7 +24,6 @@
 module debug_unit(
 										input clk,
 										input [`D_BIT:0] rx_dato_out, //Recibido desde RX
-										input [321:0] debug_signal,
 										input rx_done,
 										input tx_done,
 										output reg [`D_BIT:0] tx_dato_in, //Enviado a TX
@@ -54,22 +53,28 @@ case(estado_actual)
 				end
 			START:
 				begin					
-					if(rx_dato_out == "a")
-						begin
-							tx_dato_in = "p";
-							tx_start = 1;
-							estado_actual = DATA;
-						end
-					else if(rx_dato_out == "s")
-						begin
-							tx_dato_in = "0";
-							tx_start = 1;
-							estado_actual = DATA;
-						end
-					else 
-						begin
-							estado_actual = IDLE;
-						end
+					if(rx_done == 0)	//¿PORQUE SI SE SACA ESTE IF TIRA CUALQUIER COSA?
+							begin
+								tx_dato_in = rx_dato_out;
+								tx_start = 1;
+								estado_actual = DATA;
+							end
+						/*if(rx_dato_out == "a")
+							begin
+								tx_dato_in = "p";
+								tx_start = 1;
+								estado_actual = DATA;
+							end
+						else if(rx_dato_out == "s")
+							begin
+								tx_dato_in = "0";
+								tx_start = 1;
+								estado_actual = DATA;
+							end*/
+						else 
+							begin
+								estado_actual = estado_actual;
+							end
 				end
 			DATA:
 				begin

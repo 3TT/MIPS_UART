@@ -22,11 +22,14 @@ module PC(
 					input PC_write,
 					input [9:0] PC_new,			//direccion que entra al PC, es la que sale del sumador o que viene desde un jump
 					input clock,
+					//input enable_clk,
 					output reg [9:0]PC_current		//direccion que sale del PC, es la que va la Memoria de Instrucciones.
 					);
 
 initial PC_current = 0;
 //initial PC_new = 0;
+//wire clk; 
+//assign clk = clock && enable_clk;
 
 always@ (negedge clock)
 begin
