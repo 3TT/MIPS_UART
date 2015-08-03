@@ -278,5 +278,16 @@ hazard_detection_unit hazard_detection_unit (
 																					 .mux_ctrl_signal_sel(mux_ctrl_signal_sel),
 																					 .IF_ID_write(IF_ID_write)
 																					 );
+																					 
+/*UART uart(.clk(clock),
+			.rd(read),
+			.wr(write),
+			.w_data(transmitir),
+			.rx(rx),
+			.tx(tx),
+			.r_data(recibido),
+			.rx_empty(empty),
+			.tx_full(full)
+ );*/																					 
 
 endmodule

@@ -26,6 +26,7 @@ module UART(input clk,
 				input wr,
 				input [`D_BIT:0] w_data,
 				input rx,
+				input [9:0] PC_Plus_1,
 				output tx,
 				output [`D_BIT:0] r_data,
 				output rx_empty,
@@ -43,14 +44,14 @@ module UART(input clk,
 									.tick(tick));*/
 									
 	// Instantiate the module
-  clockReductor clockReductor(
+  /*clockReductor clockReductor(
 													 .CLK_IN1(clk),
 													 .CLK_OUT1(clk50),
 													 .CLK_OUT2(clkX2)
-													 ); 
+													 );*/
 	
 	baud BRG (
-					 .sys_clk(clk50), 
+					 .sys_clk(clk), 
 					 .baud_clk(tick)
 					 );
 
@@ -80,10 +81,11 @@ module UART(input clk,
 						
 
 	 debug_unit debug (
-										 .clk(clk50), 
+										 .clk(clk), 
 										 .rx_dato_out(rx_dato_out), 
 										 .rx_done(rx_done_tick), 
-										 .tx_done(tx_done_tick), 
+										 .tx_done(tx_done_tick),
+											.PC_Plus_1(PC_Plus_1),										 
 										 .tx_dato_in(tx_dato_in), 
 										 .tx_start(tx_start)
 										 );
