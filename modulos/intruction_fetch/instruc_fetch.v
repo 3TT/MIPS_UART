@@ -70,10 +70,9 @@ mux_2to1 #(10) mux_branch (
 	 
 PC pc_reg(
 					.clock(clock),
-					//.enable_clk(enable_clk),
+					.enable(enable),
 					.PC_write(PC_write),
 					.PC_new(PC),			//direccion que entra al PC, es la que sale del sumador o que viene desde un jump
-					
 					.PC_current(PC_current)		//direccion que sale del PC, es la que va la Memoria de Instrucciones.
 					 );
 					 

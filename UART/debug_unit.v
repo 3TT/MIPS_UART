@@ -26,7 +26,7 @@ module debug_unit(
 										input [`D_BIT:0] rx_dato_out, //Recibido desde RX
 										input rx_done,
 										input tx_done,
-										//input [9:0] PC_plus_1,
+										input [9:0] PC_plus_1,
 										output reg enable,
 										output reg [`D_BIT:0] tx_dato_in, //Enviado a TX
 										output reg tx_start

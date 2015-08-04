@@ -51,7 +51,7 @@ UART uart(
 					.wr(write),
 					.w_data(transmitir),
 					.rx(rx),
-					.PC_Plus_1(PC_Plus_1),
+					.PC_plus_1(PC_plus_1),
 					.enable(enable),
 					.tx(tx),
 					.r_data(recibido),

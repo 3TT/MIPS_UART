@@ -26,7 +26,8 @@ module baud(
 		input sys_clk,
 		output baud_clk				
 	);
-	mod_m_counter #(.N(9), .M(41)) modu(
+	//mod_m_counter #(.N(9), .M(41)) modu(		// 100 MHz
+	mod_m_counter #(.N(9), .M(20)) modu(			//50 MHz
 		.clk(sys_clk),
 		.reset(1'b0),
 		.q(),
