@@ -26,17 +26,20 @@ module debug_unit(
 										input [`D_BIT:0] rx_dato_out, //Recibido desde RX
 										input rx_done,
 										input tx_done,
+										//input [9:0] PC_plus_1,
+										output reg enable,
 										output reg [`D_BIT:0] tx_dato_in, //Enviado a TX
 										output reg tx_start
 										);
 
-	localparam [3:0]	IDLE = 4'b0001,
-									  START = 4'b0010,
-									  DATA = 4'b0100,
-									  STOP = 4'b1000;
+localparam [3:0]		IDLE = 4'b0001,
+									START = 4'b0010,
+									DATA = 4'b0100,
+									STOP = 4'b1000;
 									  
 reg [3:0] estado_actual;
 initial estado_actual = IDLE;
+initial enable = 0;
 						  
 always @ (posedge clk)
 case(estado_actual)
@@ -78,7 +81,6 @@ case(estado_actual)
 				end
 			DATA:
 				begin
-					
 					if(tx_done == 1)
 						begin
 							tx_start = 0;

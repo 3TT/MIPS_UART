@@ -27,6 +27,7 @@ module UART(input clk,
 				input [`D_BIT:0] w_data,
 				input rx,
 				input [9:0] PC_Plus_1,
+				output enable,
 				output tx,
 				output [`D_BIT:0] r_data,
 				output rx_empty,
@@ -68,27 +69,32 @@ module UART(input clk,
 						
 	//assign r_data = rx_dato_out;
 	
-	Rx reciever (.dato_in(rx),	
-					.tick_in(tick),
-					.dato_out(rx_dato_out),
-					.rx_done_tick(rx_done_tick));
+	Rx reciever (
+							.dato_in(rx),	
+							.tick_in(tick),
+							.dato_out(rx_dato_out),
+							.rx_done_tick(rx_done_tick)
+							);
 					
-	Tx transmitter (.dato_in(tx_dato_in),	
-						.tick_in(tick),
-						.tx_start(tx_start),
-						.dato_out(tx),
-						.tx_done_tick(tx_done_tick));
+	Tx transmitter (
+								.dato_in(tx_dato_in),	
+								.tick_in(tick),
+								.tx_start(tx_start),
+								.dato_out(tx),
+								.tx_done_tick(tx_done_tick)
+								);
 						
 
 	 debug_unit debug (
-										 .clk(clk), 
-										 .rx_dato_out(rx_dato_out), 
-										 .rx_done(rx_done_tick), 
-										 .tx_done(tx_done_tick),
-											.PC_Plus_1(PC_Plus_1),										 
-										 .tx_dato_in(tx_dato_in), 
-										 .tx_start(tx_start)
-										 );
+											.clk(clk), 
+											.rx_dato_out(rx_dato_out), 
+											.rx_done(rx_done_tick), 
+											.tx_done(tx_done_tick),
+											//.PC_Plus_1(PC_Plus_1),
+											.enable(enable),										 
+											.tx_dato_in(tx_dato_in), 
+											.tx_start(tx_start)
+											);
 						
 	/*Rx reciever (.dato_in(rx),	
 					.tick_in(tick),
