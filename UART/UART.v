@@ -20,18 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 `define D_BIT 7 //Por ser de 0 a 7 son 8 bits.
+`define	DEBUG 321 //+1
+
 
 module UART(input clk,
-				input rd,
-				input wr,
-				input [`D_BIT:0] w_data,
+				//input rd,
+				//input wr,
+				//input [`D_BIT:0] w_data,
 				input rx,
-				input [9:0] PC_plus_1,
+				input [`DEBUG:0] debug_signal,
+				//input [9:0] PC_plus_1,
 				output enable,
-				output tx,
-				output [`D_BIT:0] r_data,
-				output rx_empty,
-				output tx_full
+				output tx
+				//output [`D_BIT:0] r_data,
+				//output rx_empty,
+				//output tx_full
     );
 
 	wire tick, rx_done_tick, tx_done_tick, tx_start;
@@ -90,7 +93,8 @@ module UART(input clk,
 											.rx_dato_out(rx_dato_out), 
 											.rx_done(rx_done_tick), 
 											.tx_done(tx_done_tick),
-											.PC_plus_1(PC_plus_1),
+											.debug_signal(debug_signal),
+											//.PC_plus_1(PC_plus_1),
 											.enable(enable),										 
 											.tx_dato_in(tx_dato_in), 
 											.tx_start(tx_start)

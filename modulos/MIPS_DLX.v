@@ -18,14 +18,16 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
+`define	DEBUG 321 //+1
+
 module MIPS_DLX(
 									input clock,
 									input enable,
 									//input [9:0] jump_address,	//Agregada porque todavia no esta en uso, de esta forma obligamos al ise a que no los conecte como se le cante.
 									//output [9:0] PC_plus_1,		//Agregada porque todavia no esta en uso, de esta forma obligamos al ise a que no los conecte como se le cante.
 									output zero,
-									output [321:0] debug_signal,
-									output [9:0] PC_plus_1
+									output [`DEBUG:0] debug_signal
+									//output [9:0] PC_plus_1
 									);
 
 
@@ -38,8 +40,8 @@ wire jump_sel;
 wire PC_write;
 
 assign debug_signal = {//SALIDA IF_ID
-											instruc_latch_IF_ID,				//32
 											PC_plus_1_latch,					//10
+											instruc_latch_IF_ID,				//32
 											//SALIDA ID_EX
 											EX_control_latch, 					//4
 											M_control_latch_ID_EX, 		//2

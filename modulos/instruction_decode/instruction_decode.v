@@ -53,7 +53,7 @@ begin
 end
 
 wire cmp_out;
-wire jump_sel;
+//wire jump_sel;	//Tira un warning de redeclaracion
 wire [1:0] DE_control;
 
 comparer #(32) branch_cmp(

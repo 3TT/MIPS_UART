@@ -27,6 +27,8 @@ output wire [N-1:0] q
 
 	reg [N-1:0] r_reg;
 	wire [N-1:0] r_next;
+	
+	initial r_reg = 0; //Para intentar sacar un warning pero no lo saco.
 
 	always @ ( posedge clk , posedge reset )
 		if(reset)

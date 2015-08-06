@@ -18,6 +18,8 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
+`define	DEBUG 321 //+1
+
 module MIPS_UART(
 									input clock,
 									input rx,
@@ -28,10 +30,12 @@ module MIPS_UART(
 //wire reset;
 //wire enable_clk;
 
-wire read, write, empty, full;
+//wire read, write, empty, full;
+//wire [7:0] transmitir, recibido;
+
 wire enable;
-wire [7:0] transmitir, recibido;
 wire [9:0] PC_plus_1;
+wire [`DEBUG:0] debug_signal;
 
 /*clockReductor clockReductor(
 												 .CLK_IN1(clock),
@@ -47,16 +51,17 @@ clock_reductor clock_reductor(
 UART uart(
 					//.clk(clock),
 					.clk(clk),
-					.rd(read),
-					.wr(write),
-					.w_data(transmitir),
+					//.rd(read),
+					//.wr(write),
+					//.w_data(transmitir),
 					.rx(rx),
-					.PC_plus_1(PC_plus_1),
+					.debug_signal(debug_signal),
+					//.PC_plus_1(PC_plus_1),
 					.enable(enable),
-					.tx(tx),
-					.r_data(recibido),
-					.rx_empty(empty),
-					.tx_full(full)
+					.tx(tx)
+					//.r_data(recibido),
+					//.rx_empty(empty),
+					//.tx_full(full)
 					);
 
 MIPS_DLX MIPS (
@@ -64,8 +69,8 @@ MIPS_DLX MIPS (
 							 .clock(clk),
 							 .enable(enable),
 							 .zero(zero),
-							 .debug_signal(debug_signal),
-							 .PC_plus_1(PC_plus_1)
+							 .debug_signal(debug_signal)
+							 //.PC_plus_1(PC_plus_1)
 							 );
 
 endmodule

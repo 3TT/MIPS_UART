@@ -34,7 +34,7 @@ module instruction_fetch(
 wire [9:0] PC;
 wire [9:0] PC_plus_1;
 wire PC_enable;
-wire jump_sel;
+//wire jump_sel; //Tira un warning de redeclaracion
 
 instruc_mem im(
 							  .clka(clock),
