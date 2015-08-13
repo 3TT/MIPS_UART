@@ -18,7 +18,9 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-`define	DEBUG 321 //+1
+`include "modulos/definiciones.vh"
+
+//`define	DEBUG 321 //+1
 
 module MIPS_UART(
 									input clock,
@@ -37,16 +39,16 @@ wire enable;
 wire [9:0] PC_plus_1;
 wire [`DEBUG:0] debug_signal;
 
-/*clockReductor clockReductor(
+clockReductor clockReductor(
 												 .CLK_IN1(clock),
 												 .CLK_OUT1(clk),
 												 .CLK_OUT2(clkX2)
-												 );*/
+												 );
 												 
-clock_reductor clock_reductor(
+/*clock_reductor clock_reductor(
 														.CLK_IN1(clock), 
 														.CLK_OUT1(clk)
-														);
+														);*/
 													 
 UART uart(
 					//.clk(clock),

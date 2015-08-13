@@ -1,3 +1,5 @@
+`define DEBUG 321
+
 `define BUS_DAT 32			//ancho del bus de datos 
 `define BUS_DAT_MSB `BUS_DAT-1 	//ancho del bus de datos MENOS UNO
 `define BUS_OP 4 				//cantidad de bits de operaciones

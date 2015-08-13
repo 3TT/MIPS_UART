@@ -18,7 +18,9 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-`define	DEBUG 321 //+1
+`include "modulos/definiciones.vh"
+
+//`define	DEBUG 321 //+1
 
 module MIPS_DLX(
 									input clock,

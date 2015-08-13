@@ -18,9 +18,10 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
+`include "../modulos/definiciones.vh"
 
 `define D_BIT 7 //Por ser de 0 a 7 son 8 bits.
-`define	DEBUG 321 //+1
+//`define	DEBUG 321 //+1
 
 
 module UART(input clk,
